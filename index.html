@@ -40,7 +40,7 @@
 
   <div class="grid">
     <figure>
-      <canvas id="viewer1"></canvas>
+       <canvas id="viewer1"></canvas>
       <figcaption>VE2_1-1</figcaption>
     </figure>
     <figure>
@@ -58,9 +58,9 @@
   </div>
 
   <script type="module">
-    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.module.js";
-    import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.155.0/examples/jsm/controls/OrbitControls.js";
-    import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.155.0/examples/jsm/loaders/GLTFLoader.js";
+    import * as THREE from "https://esm.sh/three@0.155.0";
+    import { OrbitControls } from "https://esm.sh/three@0.155.0/examples/jsm/controls/OrbitControls.js";
+    import { GLTFLoader } from "https://esm.sh/three@0.155.0/examples/jsm/loaders/GLTFLoader.js";
 
     function initViewer(canvasId, modelUrl) {
       const canvas = document.getElementById(canvasId);
@@ -129,3 +129,4 @@
   </script>
 </body>
 </html>
+ 
