@@ -57,7 +57,7 @@
     </figure>
   </div>
 
-  <!-- Three.js + loaders -->
+  <!-- Three.js + loaders + controls -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/examples/js/loaders/GLTFLoader.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/examples/js/controls/OrbitControls.js"></script>
@@ -96,7 +96,26 @@
       loader.load(
         modelUrl,
         function (gltf) {
-          scene.add(gltf.scene);
+          const model = gltf.scene;
+          scene.add(model);
+
+          // Center and fit camera to model
+          const box = new THREE.Box3().setFromObject(model);
+          const size = box.getSize(new THREE.Vector3()).length();
+          const center = box.getCenter(new THREE.Vector3());
+
+          controls.reset();
+
+          model.position.sub(center); // center the model
+          camera.near = size / 100;
+          camera.far = size * 100;
+          camera.updateProjectionMatrix();
+
+          camera.position.copy(center);
+          camera.position.x += size / 2.0;
+          camera.position.y += size / 5.0;
+          camera.position.z += size / 2.0;
+          camera.lookAt(center);
         },
         undefined,
         function (error) {
